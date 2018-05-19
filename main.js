@@ -14,12 +14,14 @@ var reset = function () {
     document.getElementById('lose').innerHTML = losses;
     document.getElementById('guesses').innerHTML = chance;
     document.getElementById('userguessed').innerHTML = '__ __ __ __ __ __ __ __ __';
+    computerGuess = letters[Math.floor(Math.random() * letters.length)];
+    console.log(computerGuess);
 }
 
 reset();
 
 
-computerGuess = letters[Math.floor(Math.random() * letters.length)];
+
 
 document.onkeypress = function(event) {
     userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -29,25 +31,23 @@ document.onkeypress = function(event) {
 
 
     if (userGuess === computerGuess) {
+        alert("The letter " + computerGuess + " is correct!!! You may be a psychic! Try Again?");
         document.getElementById('message').innerHTML = 'Are you a real psychic?!?!?';
         wins++;
-        document.getElementById('win').innerHTML = wins;
         guesses = [];
         chance = 9;
-        computerGuess = letters[Math.floor(Math.random() * letters.length)];
         reset();
-        alert("The letter " + computerGuess + " is correct!!! You may be a psychic! Try Again?");
-
+        
+        
     } else {
         chance--;                      
         if (chance === 0) {
+            alert('Sorry I was thinking of the letter ' + computerGuess + ". You may not be a psychic. Try Again?");
             document.getElementById('message').innerHTML = 'Sorry friend, Try Again?';
             losses++;                   
             guesses = [];
             chance = 9;
-            computerGuess = letters[Math.floor(Math.random() * letters.length)];
             reset();
-            alert('Sorry I was thinking of the letter ' + computerGuess + ". You may not be a psychic. Try Again?");
         }
 
     }
@@ -55,39 +55,4 @@ document.onkeypress = function(event) {
     document.getElementById("lose").innerHTML = losses; 
     document.getElementById("guesses").innerHTML = chance;
     
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//document.onkeypress = function(event) {
-  //  var node = document.createElement('li');
-    //var textnode = document.createTextNode(event.key + );
-    //node.appendChild(textnode);
-
-    //document.getElementById("test").appendChild(node);
-    
-//}
